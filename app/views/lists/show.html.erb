@@ -1,0 +1,33 @@
+<div class="banner" style="background-image: url('https://images.pexels.com/photos/7991378/pexels-photo-7991378.jpeg');">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-9">
+      <%= link_to root_path, class: "btn btn-warning mt-3" do %>
+        <i class="fa-solid fa-house"></i>
+      <% end %>
+      <div class="cards mt-3">
+        <% @list.bookmarks.each do |bookmark| %>
+          <div class="card-product">
+            <img src="<%= bookmark.movie.poster_url %>" />
+            <div class="card-product-infos">
+              <h2><%= bookmark.movie.title %></h2>
+              <p><%= bookmark.movie.overview %></p>
+              <p><%= bookmark.comment %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <%= render "bookmarks/bookmark_form", bookmark: @bookmark %>
+    </div>
+  </div>
+
+</div>
