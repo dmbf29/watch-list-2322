@@ -1,11 +1,14 @@
-<div class="banner" style="background-image: url('https://images.pexels.com/photos/7991378/pexels-photo-7991378.jpeg');">
+<div class="banner" style="background-image: url('<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvyjppCoL9ZoIeoIhks3Cvmo1opE6dA9wzLlfrxCKhWezVN2hKFxuwZYU&s=10' %>');">
   <div class="container">
     <h1><%= @list.name %></h1>
   </div>
 </div>
-
 <div class="container">
-
+  <%# if @list.photo.attached? %>
+  <%#= cl_image_tag @list.photo.key, width: 600, height: 400, crop: :fill %>
+  <%# else %>
+  <%#= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvyjppCoL9ZoIeoIhks3Cvmo1opE6dA9wzLlfrxCKhWezVN2hKFxuwZYU&s=10', alt: "text" %>
+  <%# end %>
   <div class="row">
     <div class="col-9">
       <%= link_to root_path, class: "btn btn-warning mt-3" do %>
@@ -24,10 +27,8 @@
         <% end %>
       </div>
     </div>
-
     <div class="col-3">
       <%= render "bookmarks/bookmark_form", bookmark: @bookmark %>
     </div>
   </div>
-
 </div>
